@@ -11,7 +11,7 @@ type Options = [
   }
 ];
 
-type MessageIds = "conditionErrorFalseyString" | "conditionErrorFalseyNumber";
+type MessageIds = "conditionErrorFalseyString" | "conditionErrorFalseyNumber" | "conditionToBeFixed";
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -42,6 +42,8 @@ export default createRule<Options, MessageIds>({
         "Potentially falsey string in logical AND expression. Please use boolean.",
       conditionErrorFalseyNumber:
         "Potentially falsey number in logical AND expression. Please use boolean.",
+      conditionToBeFixed: 
+        "Potentially falsey boolean value in logical AND expression. Please use boolean cast (!!).",
     },
   },
 
@@ -80,7 +82,7 @@ export default createRule<Options, MessageIds>({
         return "conditionErrorFalseyNumber";
       }
 
-      return;
+      return "conditionToBeFixed";
     }
 
     function checkAndReportIdentifier(
